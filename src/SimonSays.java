@@ -33,8 +33,8 @@ public class SimonSays extends KeyAdapter {
 		// 2. Add the four images that match keyboard keys like this: 
 		//images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
 		images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
-		images.put(new Integer(KeyEvent.VK_DOWN), "down.png");
-		images.put(new Integer(KeyEvent.VK_LEFT), "left.png");
+		images.put(new Integer(KeyEvent.VK_DOWN), "down.jpg");
+		images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
 		images.put(new Integer(KeyEvent.VK_RIGHT), "right.jpg");
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching key when
 		// 'Simon says' otherwise press a different key"
@@ -45,9 +45,25 @@ public class SimonSays extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-
+		int score = 0;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-		
+		if(e.equals(imageIndex) && simonSays == true){
+			score++;
+			speak("You are correct");
+			speak("Your score is" + score);
+		}
+		else {
+			score++;
+			speak("You are correct");
+			speak("Your score is" + score);
+			tries++;
+		}
+		if(tries == 3) {
+			
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.dispose();
+			showImage();
+		}
 			// 17. Increase the value of score
 		
 			// 18. Use the speak method to tell the user they were correct
@@ -78,7 +94,6 @@ public class SimonSays extends KeyAdapter {
 		frame.setVisible(true);
 		// 7. Uncomment the following line to add a random image to your frame
 		frame.add(getNextRandomImage());
-		
 		// 8. Set the name of your frame
 		frame.setName("frame");
 		// 9. Pack the frame
@@ -92,12 +107,15 @@ public class SimonSays extends KeyAdapter {
 		int n = r.nextInt(2);
 		// 13. Use the Random and the speak method to either say 
 		// "Simon says press this key" or "Press this key"
+		
 		System.out.println(n);
 		if(n == 0) {
 			speak("Simon says press this key");
+			simonSays = true;
 		}
 		else if(n == 1) {
 			speak("Press this key");
+			simonSays = false;
 		}
 		// 14. Above, set the value of simonSays to true/false appropriately
 
