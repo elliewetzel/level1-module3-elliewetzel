@@ -48,7 +48,7 @@ public class Jeopardy implements ActionListener {
 		// 2. Give your frame a title
 		frame.setTitle("Ellie's Jepardy");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
-		JPanel panel = createHeader("Cells");
+		JPanel panel = createHeader("Anatomy");
 		// 4. Add the header component to the quizPanel
 		quizPanel.add(panel);
 		// 5. Add the quizPanel to the frame
@@ -65,9 +65,17 @@ public class Jeopardy implements ActionListener {
 		secondButton = createButton("$400");
 		// 10. Add the secondButton to the quizPanel
 		quizPanel.add(secondButton);
+		
+		thirdButton = createButton("$600");
+		quizPanel.add(thirdButton);
+		
+		fourthButton = createButton("$800");
+		quizPanel.add(fourthButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
 		firstButton.addActionListener(this);
 		secondButton.addActionListener(this);
+		thirdButton.addActionListener(this);
+		fourthButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
 		
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
@@ -105,10 +113,16 @@ public class Jeopardy implements ActionListener {
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 		if(buttonPressed == firstButton) {
-			askQuestion("Where are white and red blood cells produced?", "bone marrow", "200");
+			askQuestion("Where are white and red blood cells produced?", "Bone marrow", 200);
 		}
 		else if(buttonPressed == secondButton) {
-			askQuestion();
+			askQuestion("What is bone marrow?", "A soft substance found in bone cavities", 400);
+		}
+		else if(buttonPressed == thirdButton) {
+			askQuestion("What is the basic difference between arteries and veins?", "Arteries are much bigger", 600);
+		}
+		else if(buttonPressed == fourthButton) {
+			askQuestion("What cells send signals to and from the brain and nervous system?", "Neurons", 800);
 		}
 			// Call the askQuestion() method
 		
@@ -119,7 +133,7 @@ public class Jeopardy implements ActionListener {
 			// Call the askQuestion() method with a harder question
 
 		// Clear the text on the button that was pressed (set the button text to nothing)
-
+		buttonPressed.setText("");
 	}
 
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
@@ -144,7 +158,7 @@ public class Jeopardy implements ActionListener {
 			// Decrement the score by the prizeMoney
 			score-= prizeMoney;
 			// Pop up a message to tell the user they were wrong and give them the correct answer
-			JOptionPane.showMessageDialog(null, "Wrong!  These cells are made in the bone marrow");
+			JOptionPane.showMessageDialog(null, "Wrong!  " + correctAnswer);
 		}
 		// Call the updateScore() method
 		updateScore();
