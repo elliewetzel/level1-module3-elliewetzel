@@ -39,10 +39,10 @@ public class BookOfIllusions extends MouseAdapter {
 		String illusion1 = "DesertStars.jpg";
 		String illusion2 = "NorthernLights.jpg";
 		// 6. create a variable of type "JLabel" but don’t initialize it yet
-		JLabel label = null;
+		JLabel label;
 		// 7. use the "loadImage..." methods below to initialize your JLabel
-		loadImageFromComputer("file:///Users/league/Desktop/DesertStars.jpg");
-		loadImageFromComputer("https://adventures.is/wp-content/uploads/2017/02/Northern-Lights-Super-Jeep-Tour15-1200x800.jpg");
+		label = loadImageFromComputer("DesertStars.jpg");
+		label = loadImageFromComputer("NorthernLights.jpg");
 		// 8. add your JLabel to the frame
 		frame.add(label);
 		// 9. call the pack() method on the frame
@@ -57,7 +57,7 @@ public class BookOfIllusions extends MouseAdapter {
 		// 12. remove everything from the frame that was added earlier
 		frame.removeAll();
 		// 13. load a new image like before (this is more than one line of code)
-		loadImageFromComputer("https://www.spendlifetraveling.com/wp-content/uploads/2017/03/prague_expat_life_interview-1080x631.jpg");
+		loadImageFromComputer("Prague.jpg");
 		// 14. pack the frame
 		frame.pack();
 	}
