@@ -12,14 +12,14 @@ public class Calculator implements MouseListener {
 	public static int add(int a, int b) {
 		return a+b;
 	}
-	public static int multiply(int c, int d) {
-		return c*d;
+	public static int multiply(int a, int b) {
+		return a*b;
 	}
 	public static int subtract(int a, int b) {
 		return a-b;
 	}
-	public static int divide(int c, int d) {
-		return c/d;
+	public static int divide(int a, int b) {
+		return a/b;
 	}
 	static JFrame frame = new JFrame();
 	static JPanel panel = new JPanel();
@@ -38,10 +38,14 @@ public class Calculator implements MouseListener {
 	panel.add(entry2);
 	panel.add(add);
 	add.addMouseListener(this);
+	subtract.addMouseListener(this);
+	multiply.addMouseListener(this);
+	divide.addMouseListener(this);
 	panel.add(subtract);
 	panel.add(multiply);
 	panel.add(divide);
 	panel.add(answer);
+	answer.setVisible(true);
 	frame.setVisible(true);
 }
 	@Override
@@ -52,21 +56,25 @@ public class Calculator implements MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		Integer ans = null;
-		entry1.toString();
-		int x = Integer.parseInt(entry1.toString());
-		entry2.toString();
-		int y = Integer.parseInt(entry2.toString());
+		entry1.getText();
+		int a = Integer.parseInt(entry1.getText());
+		entry2.getText();
+		int b = Integer.parseInt(entry2.getText());
 		if(e.getSource().equals(add)) {
-			ans = add(x,y);
+			ans = add(a,b);
+			answer.setText(ans + "");
 		}
 		else if(e.getSource().equals(subtract)) {
-			ans = subtract(x,y);
+			ans = subtract(a,b);
+			answer.setText(ans + "");
 		}
 		else if(e.getSource().equals(multiply)) {
-			ans = multiply(x,y);
+			ans = multiply(a,b);
+			answer.setText(ans + "");
 		}
 		else if(e.getSource().equals(divide)) {
-			ans = divide(x, y);
+			ans = divide(a,b);
+			answer.setText(ans + "");
 		}
 		System.out.println(ans.toString());
 				//answer.setText(ans.toString());

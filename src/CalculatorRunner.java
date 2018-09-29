@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 public class CalculatorRunner {
 	
 	
-	
 	public static void main(String[] args) {
 		new Calculator();
 	}
