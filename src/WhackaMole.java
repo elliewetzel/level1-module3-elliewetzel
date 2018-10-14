@@ -1,8 +1,10 @@
+import java.applet.AudioClip;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Date;
 import java.util.Random;
 
+import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,9 +14,12 @@ public class WhackaMole implements MouseListener {
 	static JFrame frame = new JFrame();
 	static JPanel panel;
 	static int w = 0;
-
+	static int click;
+	static int whacked;
+	static Date timeAtStart;
 	public static void main(String[] args) {
 		new WhackaMole().drawButtons(new Random().nextInt(24));
+		timeAtStart = new Date();
 	}
 
 	public void drawButtons(int r) {
@@ -47,6 +52,11 @@ public class WhackaMole implements MouseListener {
 		JOptionPane.showMessageDialog(null, "Your whack rate is "
 				+ ((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000.00 / molesWhacked) + " moles per second.");
 	}
+	private void playSound(String fileName) {
+	     AudioClip sound = JApplet.newAudioClip(getClass().getResource("https://freesound.org/people/David%20Bowman/sounds/108945/"));
+	     sound.play();
+	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -58,16 +68,25 @@ public class WhackaMole implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		JButton k = (JButton) e.getSource();
-
+		playSound("https://freesound.org/people/David%20Bowman/sounds/108945/");
+		System.out.println(click);
 		if (k.getText().equals("mole!")) {
+			whacked++;
 			frame.dispose();
 			drawButtons(new Random().nextInt(24));
-		} else {
+			if(whacked == 10) {
+				endGame(timeAtStart, whacked);
+			}
+		} 
+		else {
+			click++;
 			speak("incorrect");
+			if(click > 5) {
+				JOptionPane.showMessageDialog(null, "You lost");
+				endGame(timeAtStart, click);
+			}
 		}
-		if (w == 10) {
-			endGame(null, 0);
-		}
+		
 	}
 
 	@Override
