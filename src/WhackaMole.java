@@ -52,11 +52,11 @@ public class WhackaMole implements MouseListener {
 		JOptionPane.showMessageDialog(null, "Your whack rate is "
 				+ ((timeAtEnd.getTime() - timeAtStart.getTime()) / 1000.00 / molesWhacked) + " moles per second.");
 	}
+	
 	private void playSound(String fileName) {
-	     AudioClip sound = JApplet.newAudioClip(getClass().getResource("https://freesound.org/people/David%20Bowman/sounds/108945/"));
+	     AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
 	     sound.play();
 	}
-
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -68,7 +68,7 @@ public class WhackaMole implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		JButton k = (JButton) e.getSource();
-		playSound("https://freesound.org/people/David%20Bowman/sounds/108945/");
+		playSound("SLAP.wav");
 		System.out.println(click);
 		if (k.getText().equals("mole!")) {
 			whacked++;
