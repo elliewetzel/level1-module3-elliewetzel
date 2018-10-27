@@ -19,6 +19,8 @@ public class SlotMachine implements MouseListener {
 	JLabel slot1 = new JLabel();
 	JLabel slot2 = new JLabel();
 	JLabel slot3 = new JLabel();
+	int s = 0;
+	JLabel score = new JLabel("Score");
 	Icon avocado;
 	Icon orange;
 	Icon lemon;
@@ -37,7 +39,7 @@ public class SlotMachine implements MouseListener {
 		
 		imageURL = getClass().getResource("Lemon.png");
 		lemon = new ImageIcon(imageURL);
-	frame.setSize(300, 200);
+	frame.setSize(600, 300);
 	frame.add(panel);
 	showImage(slot1);
 	panel.add(slot1);
@@ -45,6 +47,7 @@ public class SlotMachine implements MouseListener {
 	panel.add(slot2);
 	showImage(slot3);
 	panel.add(slot3);
+	panel.add(score);
 	panel.add(spin);
 	spin.setText("SPIN");
 	spin.addMouseListener(this);
@@ -54,7 +57,7 @@ public class SlotMachine implements MouseListener {
 
 	
 	 private void showImage(JLabel label) {
-		 int r = new Random().nextInt(2);
+		 int r = new Random().nextInt(3);
 		 System.out.println(r);
 		 if(r == 0) {
 		label.setIcon(avocado);
@@ -65,19 +68,36 @@ public class SlotMachine implements MouseListener {
 		 else if(r ==  2) {
 		 label.setIcon(lemon);
 		 }
-		 
+	
 	 }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		JButton k = (JButton) e.getSource();
 		
-		if(e.equals(spin)) {
+		if((k.getText().equals("SPIN"))) {
+			System.out.println("spin");
 			showImage(slot1);
 			showImage(slot2);
 			showImage(slot3);
 			frame.repaint();
 		}
-		
+		if(slot1.getIcon().equals(avocado) && slot2.getIcon().equals(avocado) && slot3.getIcon().equals(avocado)) {
+			s++;
+			score.setText("You win!  Your score is " + s + ".");
+		}
+		else if(slot1.getIcon().equals(orange) && slot2.getIcon().equals(orange) && slot3.getIcon().equals(orange)) {
+			s++;
+			score.setText("You win!  Your score is " + s + ".");
+		}
+		else if(slot1.getIcon().equals(lemon) && slot2.getIcon().equals(lemon) && slot3.getIcon().equals(lemon)) {
+			s++;
+			score.setText("You win!  Your score is " + s + ".");
+		}
+		else {
+			score.setText("Try to spin again");
+		}
+
 	}
 
 
