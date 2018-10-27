@@ -1,3 +1,5 @@
+/.DS_Store
+/Avocado.png
 /BookOfIllusions.class
 /Calculator.class
 /CalculatorRunner.class
@@ -7,10 +9,12 @@
 /FortuneTeller.class
 /GetLatestTweet.class
 /Jeopardy.class
+/Lemon.png
 /Movie.class
 /NastySurprise.class
 /NetflixQueue.class
 /NorthernLights.jpg
+/Orange.png
 /PigLatinTranslator.class
 /Prague.jpg
 /Recipes.html
@@ -29,6 +33,3 @@
 /moo.wav
 /right.jpg
 /up.jpg
-/Avocado.png
-/Lemon.png
-/Orange.png

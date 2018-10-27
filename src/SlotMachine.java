@@ -1,6 +1,7 @@
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -18,19 +19,31 @@ public class SlotMachine implements MouseListener {
 	JLabel slot1 = new JLabel();
 	JLabel slot2 = new JLabel();
 	JLabel slot3 = new JLabel();
+	Icon avocado;
+	Icon orange;
+	Icon lemon;
+	
 	
 	public static void main(String[] args) {
 		SlotMachine slot = new SlotMachine();
 	}
 	
 	public SlotMachine() {
+		URL imageURL = getClass().getResource("Avocado.png");
+		avocado = new ImageIcon(imageURL);
+		
+		imageURL = getClass().getResource("Orange.png");
+		orange = new ImageIcon(imageURL);
+		
+		imageURL = getClass().getResource("Lemon.png");
+		lemon = new ImageIcon(imageURL);
 	frame.setSize(300, 200);
 	frame.add(panel);
-	showImage("Avocado.png", slot1);
+	showImage(slot1);
 	panel.add(slot1);
-	showImage("Orange.png", slot2);
+	showImage(slot2);
 	panel.add(slot2);
-	showImage("Lemon.png", slot3);
+	showImage(slot3);
 	panel.add(slot3);
 	panel.add(spin);
 	spin.setText("SPIN");
@@ -40,21 +53,30 @@ public class SlotMachine implements MouseListener {
 	}
 
 	
-	 private void showImage(String fileName, JLabel label) {
-			URL imageURL = getClass().getResource(fileName);
-			Icon icon = new ImageIcon(imageURL);
-			label.setIcon(icon);
-			frame.repaint();
-			
+	 private void showImage(JLabel label) {
+		 int r = new Random().nextInt(2);
+		 System.out.println(r);
+		 if(r == 0) {
+		label.setIcon(avocado);
 		}
-
+		 else if(r == 1) {
+		label.setIcon(orange);
+		 }
+		 else if(r ==  2) {
+		 label.setIcon(lemon);
+		 }
+		 
+	 }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		int a = 1;
-		int b = 2;
-		int c = 3;
 		
+		if(e.equals(spin)) {
+			showImage(slot1);
+			showImage(slot2);
+			showImage(slot3);
+			frame.repaint();
+		}
 		
 	}
 
