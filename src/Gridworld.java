@@ -27,13 +27,15 @@ public class Gridworld {
 	Flower f2 = new Flower();
 	Location a = new Location(i, i2+1);
 	Location d = new Location(i, i2-1);
-	w.add(a, f);
-	w.add(d, f2);
+	//w.add(a, f);
+	//w.add(d, f2);
 	
-	for(int z = 0; z < 10; z++) {
+	for(int z = 0; z < 10; z++) { 
+		for(int S = 0; S < 10; S++) {
 		Flower g = new Flower();
-		Location h = new Location(z, z);
+		Location h = new Location(z, S);
 		w.add(h, g);
 	}
 	}
+}
 }
